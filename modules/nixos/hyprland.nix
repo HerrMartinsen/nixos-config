@@ -7,8 +7,9 @@
     package = pkgs.kdePackages.sddm;
   };
   programs.hyprland = {
+    withUWSM = true;
+    xwayland.enable = true;
     enable = true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
   };
 
 }

@@ -14,10 +14,10 @@
       url = "github:catppuccin/nix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hyprland = {
+    #   url = "github:hyprwm/Hyprland";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     helix = {
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,7 +48,6 @@
           ./hosts/yoga/configuration.nix
           ./modules/nixos/fonts.nix
           ./modules/nixos/hyprland.nix
-          ./modules/nixos/network.nix
           ./modules/nixos/localization.nix
           ./modules/nixos/lsp.nix
           inputs.home-manager.nixosModules.default
