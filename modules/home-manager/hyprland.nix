@@ -27,6 +27,8 @@
         #FS Right
         "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000844, preferred, -960x-1200,1"
         "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000852, preferred, 960x-1200, 1"
+        #Home UltraWide
+        "desc:Samsung Electric Company LC34G55T HNBX801468, preferred, auto-center-up, 1"
       ];
 
       general = {
@@ -104,7 +106,7 @@
         "$mainMod, C, killactive,"
         "$mainMod, V, exec, cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy"
         "$mainMod, B, exec, $browser"
-        "$mainMod, M, exit,"
+        "$mainMod CTRL, M, exit,"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
@@ -136,9 +138,13 @@
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
 
-        # Example special workspace (scratchpad)
+        # Special workspaces
+        # Scratchpad
         "$mainMod, S, togglespecialworkspace, magic"
         "$mainMod SHIFT, S, movetoworkspace, special:magic"
+        # Music Spotify
+        "$mainMod, M, exec, pgrep -x spotify || spotify; hyprctl dispatch togglespecialworkspace music"
+        "$mainMod SHIFT, M, movetoworkspace, special:music"
 
         # Scroll through existing workspaces with mainMod + scroll
         "$mainMod, mouse_down, workspace, e+1"
@@ -172,6 +178,9 @@
 
         # Fix some dragging issues with XWayland
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+
+        #Spotify only on special workspace
+        "workspace special:music, class:^(spotify)$"
       ];
 
       exec-once = [
