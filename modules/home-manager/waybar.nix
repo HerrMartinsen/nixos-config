@@ -17,7 +17,10 @@
           "hyprland/workspaces"
           "wlr/taskbar"
         ];
-        modules-center = [ "clock" ];
+        modules-center = [
+          "clock"
+          "inhibitor"
+        ];
         modules-right = [
           "memory"
           "cpu"
@@ -36,7 +39,6 @@
 
         "hyprland/workspaces" = {
           disable-scroll = true;
-          all-outputs = true;
           on-click = "activate";
           format = "{icon}";
         };
@@ -184,6 +186,15 @@
           format-alt = "<span foreground='#99ffdd'> {bandwidthDownBytes}</span> <span foreground='#ffcc66'> {bandwidthUpBytes}</span>";
           interval = 2;
         };
+
+        inhibitor = {
+          what = "idle";
+          format = "{icon}";
+          format-icons = {
+            activated = "🌝";
+            deactivated = "🌚";
+          };
+        };
       }
 
     ];
@@ -240,6 +251,7 @@
 
       #window,
       #clock,
+      #inhibitor,
       #battery,
       #pulseaudio,
       #network,
@@ -298,9 +310,13 @@
       } 
       #clock {
           color: @subtext0;
-          border-radius: 10px 10px 10px 10px;
+          border-radius: 10px 0px 0px 10px;
           margin-left: 5px;
           border-right: 0px;
+      }
+      #inhibitor {
+          color: @subtext0;
+          border-radius: 0px 10px 10px 0px;
       }
 
       #network {
