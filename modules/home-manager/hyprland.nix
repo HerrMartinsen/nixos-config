@@ -67,9 +67,10 @@
         kb_layout = "de";
         kb_variant = "nodeadkeys";
         follow_mouse = 1;
-        sensitivity = 0.2;
+        sensitivity = 0.4;
         touchpad = {
           natural_scroll = true;
+          drag_lock = 2;
         };
 
       };
