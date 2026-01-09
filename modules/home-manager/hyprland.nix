@@ -70,7 +70,7 @@
         sensitivity = 0.4;
         touchpad = {
           natural_scroll = true;
-          drag_lock = 2;
+          drag_lock = 1;
         };
 
       };

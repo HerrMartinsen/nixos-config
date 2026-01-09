@@ -2,6 +2,11 @@
 
 {
   programs.helix = {
+    extraPackages = with pkgs; [
+      pyright
+      ruff
+      nixfmt-rfc-style
+    ];
     enable = true;
     defaultEditor = true;
     settings = {
@@ -19,19 +24,48 @@
           "spacer"
         ];
         bufferline = "multiple";
+        word-completion.trigger-length = 3;
       };
     };
 
-    languages.language = [
-      {
-        name = "nix";
-        auto-format = true;
-        formatter.command = lib.getExe pkgs.nixfmt-rfc-style;
-      }
-      {
-        name = "cpp";
-        auto-format = true;
-      }
-    ];
+    languages = {
+      language = [
+        {
+          name = "nix";
+          auto-format = true;
+          formatter.command = lib.getExe pkgs.nixfmt-rfc-style;
+        }
+        {
+          name = "cpp";
+          auto-format = true;
+        }
+        {
+          name = "python";
+          auto-format = true;
+          language-servers = [
+            "pyright"
+            "ruff"
+          ];
+          formatter = {
+            command = "ruff";
+            args = [
+              "format"
+              "-"
+            ];
+          };
+        }
+      ];
+      language-server = {
+        pyright = {
+          command = "pyright-langserver";
+          args = [ "--stdio" ];
+        };
+
+        ruff = {
+          command = "ruff";
+          args = [ "server" ];
+        };
+      };
+    };
   };
 }

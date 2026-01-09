@@ -20,6 +20,7 @@
         modules-center = [
           "clock"
           "inhibitor"
+          "custom/music"
         ];
         modules-right = [
           "memory"
@@ -195,6 +196,11 @@
             deactivated = "🌚";
           };
         };
+        "custom/music" = {
+          "format" = "{}";
+          "return-type" = "json";
+          "exec" = "waybar-module-music";
+        };
       }
 
     ];
@@ -260,7 +266,8 @@
       #workspaces,
       #tray,
       #backlight,
-      #taskbar{
+      #taskbar,
+      #custom-music{
           background: @base;
           padding: 0px 10px;
           margin: 3px 0px;
@@ -315,6 +322,9 @@
           border-right: 0px;
       }
       #inhibitor {
+          color: @subtext0;
+      }
+      #custom-music {
           color: @subtext0;
           border-radius: 0px 10px 10px 0px;
       }

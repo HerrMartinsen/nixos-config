@@ -22,6 +22,10 @@
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    waybar-module-music = {
+      url = "/home/martin/waybar-module-music";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -43,6 +47,7 @@
                 };
               })
               (inputs.helix.overlays.default)
+              (inputs.waybar-module-music.overlays.default)
             ];
           }
           ./hosts/yoga/configuration.nix

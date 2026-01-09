@@ -91,6 +91,7 @@
     libnotify
     hyprpaper
     kdePackages.dolphin
+    nautilus
     brightnessctl
     networkmanagerapplet
     #desktop portal for now
@@ -139,6 +140,11 @@
     #hunspellDicts.de_DE
     #hunspellDicts.en_US
     helix
+
+    zotero
+    blender
+
+    waybar-module-music
   ];
 
   services = {
