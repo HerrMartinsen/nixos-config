@@ -20,7 +20,6 @@
         modules-center = [
           "clock"
           "inhibitor"
-          "custom/music"
         ];
         modules-right = [
           "memory"
@@ -28,6 +27,7 @@
           "network"
           "battery"
           "backlight"
+          "bluetooth"
           "pulseaudio"
           "pulseaudio#microphone"
           "tray"
@@ -108,6 +108,26 @@
             "󰂂"
             "󰁹"
           ];
+        };
+
+        "bluetooth" = {
+          "format" = " {status}";
+          "format-connected" = " {device_alias}";
+          "format-connected-battery" = " {device_alias} {device_battery_percentage}%";
+          # "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+          "tooltip-format" = ''
+            {controller_alias}	{controller_address}
+
+            {num_connections} connected'';
+          "tooltip-format-connected" = ''
+            {controller_alias}	{controller_address}
+
+            {num_connections} connected
+
+            {device_enumerate}'';
+          "tooltip-format-enumerate-connected" = "{device_alias}	{device_address}";
+          "tooltip-format-enumerate-connected-battery" =
+            "{device_alias}	{device_address}	{device_battery_percentage}%";
         };
 
         pulseaudio = {
@@ -196,11 +216,6 @@
             deactivated = "🌚";
           };
         };
-        "custom/music" = {
-          "format" = "{}";
-          "return-type" = "json";
-          "exec" = "waybar-module-music";
-        };
       }
 
     ];
@@ -266,8 +281,8 @@
       #workspaces,
       #tray,
       #backlight,
-      #taskbar,
-      #custom-music{
+      #bluetooth,
+      #taskbar{
           background: @base;
           padding: 0px 10px;
           margin: 3px 0px;
@@ -323,10 +338,6 @@
       }
       #inhibitor {
           color: @subtext0;
-      }
-      #custom-music {
-          color: @subtext0;
-          border-radius: 0px 10px 10px 0px;
       }
 
       #network {

@@ -32,6 +32,7 @@
       language = [
         {
           name = "nix";
+          language-servers = [ "nil" ];
           auto-format = true;
           formatter.command = lib.getExe pkgs.nixfmt-rfc-style;
         }
@@ -56,6 +57,10 @@
         }
       ];
       language-server = {
+        nil = {
+          command = "nil";
+          config.nil.nix.flake.autoArchive = true;
+        };
         pyright = {
           command = "pyright-langserver";
           args = [ "--stdio" ];

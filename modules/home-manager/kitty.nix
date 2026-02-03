@@ -19,6 +19,8 @@
       enable_audio_bell no
       tab_bar_style powerline
       tab_bar_edge top
+
+      map ctrl+shift+t launch --cwd=current --type=tab
     '';
   };
 }

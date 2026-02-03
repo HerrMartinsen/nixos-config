@@ -132,22 +132,27 @@
     obsidian
 
     ntfs3g
+    udiskie
     openfortivpn
 
     swi-prolog
-    #libreoffice-qt
-    #hunspell
-    #hunspellDicts.de_DE
-    #hunspellDicts.en_US
+    libreoffice-qt
+    hunspell
+    hunspellDicts.de_DE
+    hunspellDicts.en_US
     helix
 
     zotero
     blender
 
-    waybar-module-music
+    xauth
+    signal-desktop
+
+    bat
   ];
 
   services = {
+    gnome.gnome-keyring.enable = true;
     blueman.enable = true;
     locate.enable = true;
     pulseaudio.enable = false;
@@ -161,9 +166,9 @@
       HandlePowerKey = "hibernate";
       HandleLidSwitch = "suspend-then-hibernate";
     };
-    onedrive = {
-      enable = true;
-    };
+    onedrive.enable = true;
+    udisks2.enable = true;
+
   };
   security = {
     polkit.enable = true;
@@ -196,9 +201,11 @@
           IdentityFile ~/.ssh/id_ed25519_yoga_nixos
           IdentitiesOnly yes
         
-        Host gralab
+        Host gralab-05
           HostName gralab-05.oth-regensburg.de
           IdentityFile ~/.ssh/id_ed25519_yoga_nixos
+          ForwardX11 yes
+          XAuthLocation /run/current-system/sw/bin/xauth
         
         Host im-kigs
           HostName im-kigs.oth-regensburg.de
