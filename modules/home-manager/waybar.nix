@@ -27,9 +27,10 @@
           "network"
           "battery"
           "backlight"
-          "bluetooth"
+          # "bluetooth"
           "pulseaudio"
           "pulseaudio#microphone"
+          "custom/notification"
           "tray"
         ];
 
@@ -216,6 +217,26 @@
             deactivated = "🌚";
           };
         };
+        "custom/notification" = {
+          "tooltip" = true;
+          "format" = "<span size='16pt'>{icon}</span>";
+          "format-icons" = {
+            "notification" = "󱅫";
+            "none" = "󰂜";
+            "dnd-notification" = "󰂠";
+            "dnd-none" = "󰪓";
+            "inhibited-notification" = "󰂛";
+            "inhibited-none" = "󰪑";
+            "dnd-inhibited-notification" = "󰂛";
+            "dnd-inhibited-none" = "󰪑";
+          };
+          "return-type" = "json";
+          "exec-if" = "which swaync-client";
+          "exec" = "swaync-client -swb";
+          "on-click" = "swaync-client -t -sw";
+          "on-click-right" = "swaync-client -d -sw";
+          "escape" = true;
+        };
       }
 
     ];
@@ -282,7 +303,8 @@
       #tray,
       #backlight,
       #bluetooth,
-      #taskbar{
+      #taskbar,
+      #custom-notification {
           background: @base;
           padding: 0px 10px;
           margin: 3px 0px;
@@ -298,6 +320,12 @@
           border-radius: 10px;
           margin-right: 10px;
       }
+
+      #custom-notification {
+          border-radius: 10px;
+          margin-right: 10px;
+      }
+
 
       #workspaces {
           background: @base;
@@ -338,6 +366,7 @@
       }
       #inhibitor {
           color: @subtext0;
+          border-radius: 0px 10px 10px 0px;
       }
 
       #network {
