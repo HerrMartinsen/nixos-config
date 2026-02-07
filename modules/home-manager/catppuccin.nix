@@ -1,10 +1,12 @@
 { ... }:
 
 {
+  services.swaync.enable = true;
   programs = {
     spotify-player.enable = true;
     hyprlock.enable = true;
     rofi.enable = true;
+
     yazi = {
       enable = true;
       settings = {

@@ -27,9 +27,10 @@
           "network"
           "battery"
           "backlight"
-          "bluetooth"
+          # "bluetooth"
           "pulseaudio"
           "pulseaudio#microphone"
+          "custom/notification"
           "tray"
         ];
 
@@ -46,6 +47,8 @@
 
         "wlr/taskbar" = {
           on-click = "activate";
+          on-click-middle = "close";
+          on-click-left = "fullscreen";
         };
 
         tray = {
@@ -216,10 +219,29 @@
             deactivated = "🌚";
           };
         };
+        "custom/notification" = {
+          "tooltip" = true;
+          "format" = "<span size='16pt'>{icon}</span>";
+          "format-icons" = {
+            "notification" = "󱅫";
+            "none" = "󰂜";
+            "dnd-notification" = "󰂠";
+            "dnd-none" = "󰪓";
+            "inhibited-notification" = "󰂛";
+            "inhibited-none" = "󰪑";
+            "dnd-inhibited-notification" = "󰂛";
+            "dnd-inhibited-none" = "󰪑";
+          };
+          "return-type" = "json";
+          "exec-if" = "which swaync-client";
+          "exec" = "swaync-client -swb";
+          "on-click" = "swaync-client -t -sw";
+          "on-click-right" = "swaync-client -d -sw";
+          "escape" = true;
+        };
       }
 
     ];
-
     style = ''
       * {
           border: none;
@@ -230,27 +252,140 @@
           min-height: 0;
       }
 
+      /* Island Left */
+      #clock,
+      #memory,
+      #network,
+      #backlight {
+        background: @base;
+        color: @subtext0;
+        border: 0px;
+        border-radius: 10px 0px 0px 10px;
+        margin: 5px 0px 5px 5px;
+        padding: 0px 5px 0px 10px;
+      }
+      #clock:hover,
+      #memory:hover,
+      #network:hover,
+      #backlight:hover {
+        background: @mauve;
+        color: @crust;
+        border: 0px;
+        border-radius: 10px 0px 0px 10px;
+        margin: 5px 0px 5px 5px;
+        padding: 0px 5px 0px 10px;
+      }
+
+      /* Island Middle */
+      #pulseaudio {
+        background: @base;
+        color: @subtext0;
+        border: 0px;
+        border-radius: 0px;
+        margin: 5px 0px 5px 0px;
+        padding: 0px 5px;
+      }
+      #pulseaudio:hover {
+        background: @mauve;
+        color: @crust;
+        border: 0px;
+        border-radius: 0px;
+        margin: 5px 0px 5px 0px;
+        padding: 0px 5px;
+      }
+
+      /* Island Right */
+      #inhibitor,
+      #cpu,
+      #battery,
+      #pulseaudio.microphone {
+        background: @base;
+        color: @subtext0;
+        border: 0px;
+        border-radius: 0px 10px 10px 0px;
+        margin: 5px 5px 5px 0px;
+        padding: 0px 10px 0px 5px;
+      }
+      #inhibitor:hover,
+      #cpu:hover,
+      #battery:hover,
+      #pulseaudio.microphone:hover {
+        background: @mauve;
+        color: @crust;
+        border: 0px;
+        border-radius: 0px 10px 10px 0px;
+        margin: 5px 5px 5px 0px;
+        padding: 0px 10px 0px 5px;
+      }
+
+      /* Island Solo */
+      #workspaces,
+      #taskbar,
+      #custom-notification,
+      #tray{
+        background: @base;
+        color: @subtext0;
+        border: 0px;
+        border-radius: 10px;
+        margin: 5px 5px 5px 5px;
+        padding: 0px 5px;
+      }
+      #custom-notification:hover,
+      #tray:hover{
+        background: @mauve;
+        color: @crust;
+        border: 0px;
+        border-radius: 10px;
+        margin: 5px 5px 5px 5px;
+        padding: 0px 5px;
+      }
+
+      .modules-left,
+      .modules-right {
+        margin: 0 5px;
+      }
+
+      #custom-notification,
+      #custom-notification:hover{
+        padding-left: 5px;
+        padding-right: 8px;
+      }
+
       window#waybar {
-        background: rgba(21, 18, 27, 0);
-          color: @text;
+        background: transparent;
+        color: @text;
+      }
+
+      #workspaces,
+      #taskbar {
+        padding: 0px;
+      }
+
+      #tray menu{
+        background: @base;
+        color: @subtext0;
       }
 
       #workspaces button,
-      #taskbar button{
-          padding: 5px;
-          color: @overlay2;
-          margin-right: 5px;
+      #taskbar button,
+      #tray button{
+        padding: 5px;
+        color: @subtext0;
       }
 
       #workspaces button.active,
       #taskbar button.active{
-          color: @accent;
+          background: @surface0;
+          color: @subtext0; 
+          border-radius: 10px;
+          transition: none;
+          animation: none;
       }
 
       #workspaces button.focused,
       #taskbar button.focused{
           color: @subtext0;
-          background: @accent;
+          background: @surface0;
           border-radius: 10px;
       }
 
@@ -258,112 +393,17 @@
       #taskbar button.urgent
       {
           color: @crust;
-          background: @green;
+          background: @mauve;
           border-radius: 10px;
       }
 
       #workspaces button:hover,
-      #taskbar button:hover
-      {
-          background: @text;
+      #taskbar button:hover{
+          background: @mauve;
           color: @crust; 
           border-radius: 10px;
-      }
-
-      #window,
-      #clock,
-      #inhibitor,
-      #battery,
-      #pulseaudio,
-      #network,
-      #cpu,
-      #memory,
-      #workspaces,
-      #tray,
-      #backlight,
-      #bluetooth,
-      #taskbar{
-          background: @base;
-          padding: 0px 10px;
-          margin: 3px 0px;
-          margin-top: 5px;
-          /* border: 1px solid #181825; */
-      }
-
-      #backlight {
-          border-radius: 10px 0px 0px 10px;
-      }
-
-      #tray {
-          border-radius: 10px;
-          margin-right: 10px;
-      }
-
-      #workspaces {
-          background: @base;
-          border-radius: 10px;
-          margin-left: 10px;
-          padding-right: 0px;
-          padding-left: 5px;
-      }
-
-      #cpu {
-          border-radius: 0px 10px 10px 0px;
-          margin-right: 10px;
-      }
-
-      #memory {
-          border-radius: 10px 0px 0px 10px;
-      }
-
-      #window {
-          border-radius: 10px;
-          margin-left: 60px;
-          margin-right: 60px;
-      }
-
-      #taskbar {
-          background: @base;
-          border-radius: 10px;
-          margin-left: 10px;
-          padding-right: 0px;
-          padding-left: 5px;
-
-      } 
-      #clock {
-          color: @subtext0;
-          border-radius: 10px 0px 0px 10px;
-          margin-left: 5px;
-          border-right: 0px;
-      }
-      #inhibitor {
-          color: @subtext0;
-      }
-
-      #network {
-          color:  @subtext0;
-          border-radius: 10px 0px 0px 10px;
-
-      }
-
-      #pulseaudio {
-          color: @subtext0;
-          border-left: 0px;
-          border-right: 0px;
-      }
-
-      #pulseaudio.microphone {
-          color: @subtext0;
-          border-radius: 0px 10px 10px 0px;
-          border-left: 0px;
-          border-right: 0px;
-          margin-right: 5px;
-      }
-
-      #battery {
-          color: @subtext0;
-          border-radius: 0px 10px 10px 0px;
-          margin-right: 10px;
+          transition: none;
+          animation: none;
       }
 
     '';
