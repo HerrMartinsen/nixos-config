@@ -5,7 +5,8 @@
     extraPackages = with pkgs; [
       pyright
       ruff
-      nixfmt-rfc-style
+      nixfmt
+      ltex-ls-plus
     ];
     enable = true;
     defaultEditor = true;
@@ -34,7 +35,7 @@
           name = "nix";
           language-servers = [ "nil" ];
           auto-format = true;
-          formatter.command = lib.getExe pkgs.nixfmt-rfc-style;
+          formatter.command = lib.getExe pkgs.nixfmt;
         }
         {
           name = "cpp";
@@ -55,6 +56,13 @@
             ];
           };
         }
+        {
+          name = "latex";
+          language-servers = [
+            "texlab"
+            "ltex-ls-plus"
+          ];
+        }
       ];
       language-server = {
         nil = {
@@ -69,6 +77,10 @@
         ruff = {
           command = "ruff";
           args = [ "server" ];
+        };
+        ltex-ls-plus = {
+          command = "ltex-ls-plus";
+          config.language = "de-DE";
         };
       };
     };

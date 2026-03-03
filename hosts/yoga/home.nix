@@ -15,6 +15,8 @@
     ../../modules/home-manager/kitty.nix
     ../../modules/home-manager/dunst.nix
     ../../modules/home-manager/waybar.nix
+    ../../modules/home-manager/vscode.nix
+    ../../modules/home-manager/clipboard.nix
   ];
 
   home.username = "martin";

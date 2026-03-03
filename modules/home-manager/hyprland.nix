@@ -105,7 +105,8 @@
         "$mainMod, L, exec, hyprlock"
 
         "$mainMod, C, killactive,"
-        "$mainMod, V, exec, cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy"
+        # "$mainMod, V, exec, cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy"
+        "$mainMod, V, exec, $terminal --class clipse -e 'clipse'"
         "$mainMod, B, exec, $browser"
         "$mainMod CTRL, M, exit,"
 
@@ -181,14 +182,17 @@
         "match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0, suppress_event activate activatefocus, no_initial_focus 1"
         #Spotify only on special workspace
         "match:initial_class ^(spotify)$, workspace special:music"
+
+        "match:class clipse, float true"
+        "match:class clipse, size 622 652"
       ];
 
       exec-once = [
         "systemctl --user start hyprpolkitagent"
-        "dunst"
+        "swaync"
         "waybar"
-        "wl-paste --type text --watch cliphist store"
-        "wl-paste --type image --watch cliphist store"
+        # "wl-paste --type text --watch cliphist store"
+        # "wl-paste --type image --watch cliphist store"
         "hypridle"
         "nm-applet --indicator"
         "blueman-applet"
@@ -212,6 +216,9 @@
         "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
         "XDG_SCREENSHOTS_DIR,/home/martin/screenshots"
+
+        "HYPRCURSOR_THEME,catppuccin-mocha-mauve-cursors"
+        "HYPRCURSOR_SIZE,24"
       ];
     };
   };

@@ -19,7 +19,11 @@
 
   networking = {
     hostName = "yoga";
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      plugins = [ pkgs.networkmanager-fortisslvpn ];
+      wifi.powersave = false;
+    };
   };
   powerManagement.enable = true;
 
@@ -79,6 +83,8 @@
 
   environment.systemPackages = with pkgs; [
     vim-full
+    htop
+    btop
     lua-language-server
     tree-sitter
     unzip
@@ -100,7 +106,6 @@
     hyprpolkitagent
     vscode-fhs
     #clipboard
-    cliphist
     wl-clipboard
 
     hyprpicker
@@ -144,6 +149,7 @@
 
     zotero
     blender
+    mate.atril
 
     xauth
     signal-desktop

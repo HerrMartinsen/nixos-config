@@ -1,11 +1,13 @@
 { ... }:
 
 {
+  home.pointerCursor.hyprcursor.enable = true;
   services.swaync.enable = true;
   programs = {
     spotify-player.enable = true;
     hyprlock.enable = true;
     rofi.enable = true;
+    delta.enable = true;
 
     yazi = {
       enable = true;
@@ -13,7 +15,6 @@
         linemode = "size";
       };
     };
-    vscode.enable = true;
     # waybar.enable = true;
     # thunderbird.enable = true;
   };
@@ -23,6 +24,7 @@
     enable = true;
     flavor = "mocha";
     accent = "mauve";
+    cursors.enable = true;
     # gtk.icon.enable = false;
   };
 }
