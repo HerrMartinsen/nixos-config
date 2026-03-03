@@ -28,8 +28,10 @@
           "battery"
           "backlight"
           # "bluetooth"
+          # "bluetooth"
           "pulseaudio"
           "pulseaudio#microphone"
+          "custom/notification"
           "custom/notification"
           "tray"
         ];
