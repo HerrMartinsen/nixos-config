@@ -1,15 +1,11 @@
 {
-  config,
   pkgs,
   inputs,
   ...
 }:
 
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -17,14 +13,7 @@
   boot.resumeDevice = "/dev/disk/by-uuid/6db45830-dbd2-4599-8965-c6d8b6c71bba";
   boot.plymouth.enable = true;
 
-  networking = {
-    hostName = "yoga";
-    networkmanager = {
-      enable = true;
-      plugins = [ pkgs.networkmanager-fortisslvpn ];
-      wifi.powersave = false;
-    };
-  };
+  networking.networkmanager.plugins = [ pkgs.networkmanager-fortisslvpn ];
   powerManagement.enable = true;
 
   system.autoUpgrade.enable = true;
@@ -47,7 +36,6 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [ ];
   };
 
   catppuccin = {

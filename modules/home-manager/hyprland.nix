@@ -28,7 +28,9 @@
         "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000844, preferred, -960x-1200,1"
         "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000852, preferred, 960x-1200, 1"
         #Home UltraWide
-        "desc:Samsung Electric Company LC34G55T HNBX801468, preferred, auto-center-up, 1"
+        "desc:Samsung Electric Company LC34G55T HNBX801468, preferred, -760x-1440, 1"
+        #Home HP
+        # "desc:HP Inc. HP 25x CNK9061K09, preferred, auto-right-up, 1"
       ];
 
       general = {

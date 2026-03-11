@@ -14,10 +14,7 @@
       url = "github:catppuccin/nix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # hyprland = {
-    #   url = "github:hyprwm/Hyprland";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+
     helix = {
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,29 +28,47 @@
       nixpkgs-stable,
       ...
     }@inputs:
+    let
+      mkHost =
+        {
+          system,
+          hostname,
+          extraModules ? [ ],
+        }:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+            hostname = hostname;
+          };
+          modules = [
+            ./modules/common
+            ./hosts/${hostname}/configuration.nix
+            inputs.home-manager.nixosModules.default
+          ]
+          ++ extraModules;
+        };
+    in
     {
-      nixosConfigurations.yoga = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
-          {
-            nixpkgs.overlays = [
-              (final: prev: {
-                stable = import nixpkgs-stable {
-                  system = prev.system;
-                };
-              })
-              (inputs.helix.overlays.default)
-            ];
-          }
-          ./hosts/yoga/configuration.nix
-          ./modules/nixos/fonts.nix
-          ./modules/nixos/hyprland.nix
-          ./modules/nixos/localization.nix
-          ./modules/nixos/lsp.nix
-          inputs.home-manager.nixosModules.default
-          inputs.catppuccin.nixosModules.catppuccin
-        ];
-        system = "x86_64-linux";
+      nixosConfigurations = {
+        yoga = mkHost {
+          system = "x86_64-linux";
+          hostname = "yoga";
+          extraModules = [
+            {
+              nixpkgs.overlays = [
+                (final: prev: {
+                  stable = import nixpkgs-stable {
+                    system = prev.system;
+                  };
+                })
+                (inputs.helix.overlays.default)
+              ];
+            }
+            inputs.catppuccin.nixosModules.catppuccin
+            ./modules/nixos/hyprland.nix
+          ];
+        };
       };
+
     };
 }
