@@ -143,6 +143,8 @@
     signal-desktop
 
     bat
+
+    dbeaver-bin
   ];
 
   services = {
