@@ -1,0 +1,23 @@
+{ config, lib, ... }:
+let
+  p = config.my.modules.profile;
+in
+{
+  options.my.modules.profile = lib.mkOption {
+    type = lib.types.enum [
+      "yoga"
+      "default"
+    ];
+    default = "default";
+  };
+  config = {
+    my.modules.office.enable = (p == "yoga");
+  };
+  imports = [
+    ./fonts.nix
+    ./localization.nix
+    ./networking.nix
+    ./office.nix
+    ./ssh.nix
+  ];
+}

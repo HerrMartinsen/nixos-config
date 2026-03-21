@@ -77,30 +77,29 @@
     tree-sitter
     unzip
     wget
-    kitty
-    rofi
-    pavucontrol
-    waybar
-    dunst
-    libnotify
-    hyprpaper
+    # kitty
+    # rofi
+    # pavucontrol
+    # waybar
+    # libnotify
+    # hyprpaper
     kdePackages.dolphin
     nautilus
-    brightnessctl
-    networkmanagerapplet
+    # brightnessctl
+    # networkmanagerapplet
     #desktop portal for now
-    xdg-desktop-portal-gtk
+    # xdg-desktop-portal-gtk
     #for gui with elevated privlages
-    hyprpolkitagent
+    # hyprpolkitagent
     vscode-fhs
     #clipboard
-    wl-clipboard
+    # wl-clipboard
 
-    hyprpicker
-    hyprlock
-    hypridle
-    wlogout
-    grimblast
+    # hyprpicker
+    # hyprlock
+    # hypridle
+    # wlogout
+    # grimblast
 
     (import ../../modules/nixos/spotify.nix { inherit pkgs; })
 
@@ -108,31 +107,19 @@
 
     spotify-player
 
-    todo
     yazi
-    udiskie
 
-    gnumake
-    gcc
-    autoconf
-    automake
     zulip
     feh
     gimp3
     playerctl
     magic-wormhole-rs
-    onedrivegui
     obsidian
 
-    ntfs3g
-    udiskie
+    # ntfs3g
+    # udiskie
     openfortivpn
 
-    swi-prolog
-    libreoffice-qt
-    hunspell
-    hunspellDicts.de_DE
-    hunspellDicts.en_US
     helix
 
     zotero
@@ -221,5 +208,7 @@
   ];
 
   system.stateVersion = "25.05";
+
+  my.modules.profile = "yoga";
 
 }
