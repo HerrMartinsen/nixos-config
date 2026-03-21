@@ -19,7 +19,7 @@
       nautilus
 
       #pdf viewer
-      mate.atril
+      atril
     ];
   };
 }

@@ -159,6 +159,8 @@
     firefox.enable = true;
     thunderbird.enable = true;
     git.enable = true;
+    delta.enable = true;
+    steam.enable = true;
     nh = {
       enable = true;
       clean = {
