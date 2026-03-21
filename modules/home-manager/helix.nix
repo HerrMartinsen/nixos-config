@@ -7,6 +7,8 @@
       ruff
       nixfmt
       ltex-ls-plus
+      lua-language-server
+      tree-sitter
     ];
     enable = true;
     defaultEditor = true;

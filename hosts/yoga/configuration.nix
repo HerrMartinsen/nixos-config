@@ -70,11 +70,8 @@
   };
 
   environment.systemPackages = with pkgs; [
-    vim-full
     htop
     btop
-    lua-language-server
-    tree-sitter
     unzip
     wget
     # kitty
