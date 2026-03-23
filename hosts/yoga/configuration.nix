@@ -121,7 +121,7 @@
 
     zotero
     blender
-    mate.atril
+    atril
 
     xauth
     signal-desktop

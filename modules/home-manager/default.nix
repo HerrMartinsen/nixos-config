@@ -39,6 +39,7 @@ in
   };
   imports = [
     ./hyprland.nix
+    ./hyprpaper.nix
     ./catppuccin.nix
     #./firefox.nix
     ./helix.nix
