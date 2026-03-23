@@ -41,7 +41,7 @@
             hostname = hostname;
           };
           modules = [
-            ./modules
+            ./modules/nixos
             ./hosts/${hostname}/configuration.nix
             inputs.home-manager.nixosModules.default
           ]
