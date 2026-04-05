@@ -6,6 +6,7 @@
       pyright
       ruff
       nixfmt
+      nil
       ltex-ls-plus
       lua-language-server
       tree-sitter

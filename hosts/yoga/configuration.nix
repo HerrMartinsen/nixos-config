@@ -16,14 +16,6 @@
   networking.networkmanager.plugins = [ pkgs.networkmanager-fortisslvpn ];
   powerManagement.enable = true;
 
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.dates = "weekly";
-
-  #nix.gc.automatic = true;
-  #nix.gc.dates = "daily";
-  #nix.gc.options = "--delete-older-than 10d";
-  nix.settings.auto-optimise-store = true;
-
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"

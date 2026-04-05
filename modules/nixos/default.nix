@@ -19,5 +19,6 @@ in
     ./networking.nix
     ./office.nix
     ./ssh.nix
+    ./store.nix
   ];
 }
