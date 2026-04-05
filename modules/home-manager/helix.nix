@@ -16,10 +16,17 @@
       editor = {
         default-yank-register = "+";
         cursor-shape.insert = "bar";
-        auto-save = {
-          after-delay.timeout = 3000;
+        auto-save.after-delay = {
+          timeout = 3000;
           enable = true;
         };
+
+        line-number = "relative";
+        indent-guides = {
+          skip-levels = 1;
+          render = true;
+        };
+
         gutters = [
           "diff"
           "diagnostics"

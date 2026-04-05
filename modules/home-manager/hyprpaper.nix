@@ -6,7 +6,7 @@
       wallpaper = {
         monitor = "";
         path = "~/nixos-config/img/wallpaper";
-        timeout = 300;
+        timeout = 1800;
       };
     };
   };

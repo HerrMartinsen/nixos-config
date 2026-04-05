@@ -50,6 +50,7 @@
     in
     {
       nixosConfigurations = {
+        # Config Laptop
         yoga = mkHost {
           system = "x86_64-linux";
           hostname = "yoga";
@@ -66,6 +67,23 @@
             }
             inputs.catppuccin.nixosModules.catppuccin
             ./modules/nixos/hyprland.nix
+          ];
+        };
+        # Config Server
+        hermes = mkHost {
+          system = "x86_64-linux";
+          hostname = "hermes";
+          extraModules = [
+            {
+              nixpkgs.overlays = [
+                (final: prev: {
+                  stable = import nixpkgs-stable {
+                    system = prev.system;
+                  };
+                })
+                (inputs.helix.overlays.default)
+              ];
+            }
           ];
         };
       };
