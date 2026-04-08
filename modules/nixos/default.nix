@@ -12,6 +12,7 @@ in
   };
   config = {
     my.modules.office.enable = (p == "yoga");
+
   };
   imports = [
     ./fonts.nix

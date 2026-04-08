@@ -44,6 +44,16 @@
             ./modules/nixos
             ./hosts/${hostname}/configuration.nix
             inputs.home-manager.nixosModules.default
+            {
+              nixpkgs.overlays = [
+                (final: prev: {
+                  stable = import nixpkgs-stable {
+                    system = prev.system;
+                  };
+                })
+                (inputs.helix.overlays.default)
+              ];
+            }
           ]
           ++ extraModules;
         };
@@ -55,36 +65,26 @@
           system = "x86_64-linux";
           hostname = "yoga";
           extraModules = [
-            {
-              nixpkgs.overlays = [
-                (final: prev: {
-                  stable = import nixpkgs-stable {
-                    system = prev.system;
-                  };
-                })
-                (inputs.helix.overlays.default)
-              ];
-            }
             inputs.catppuccin.nixosModules.catppuccin
             ./modules/nixos/hyprland.nix
           ];
         };
-        # Config Server
+        # Config Server RGB
         hermes = mkHost {
           system = "x86_64-linux";
           hostname = "hermes";
-          extraModules = [
-            {
-              nixpkgs.overlays = [
-                (final: prev: {
-                  stable = import nixpkgs-stable {
-                    system = prev.system;
-                  };
-                })
-                (inputs.helix.overlays.default)
-              ];
-            }
-          ];
+          extraModules = [ ];
+        };
+        # Config Server KB
+        zeus = mkHost {
+          system = "x86_64-linux";
+          hostname = "zeus";
+          extraModules = [ ];
+        };
+        hera = mkHost {
+          system = "x86_64-linux";
+          hostname = "hera";
+          extraModules = [ ];
         };
       };
 

@@ -7,11 +7,15 @@
 {
   imports = [ ./hardware-configuration.nix ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = [ "resume_offset=12550144" ];
-  boot.resumeDevice = "/dev/disk/by-uuid/6db45830-dbd2-4599-8965-c6d8b6c71bba";
-  boot.plymouth.enable = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    kernelParams = [ "resume_offset=12550144" ];
+    resumeDevice = "/dev/disk/by-uuid/6db45830-dbd2-4599-8965-c6d8b6c71bba";
+    plymouth.enable = true;
+  };
 
   networking.networkmanager.plugins = [ pkgs.networkmanager-fortisslvpn ];
   powerManagement.enable = true;
@@ -66,6 +70,7 @@
     btop
     unzip
     wget
+    wireguard-tools
     # kitty
     # rofi
     # pavucontrol
@@ -124,7 +129,7 @@
   ];
 
   services = {
-    gnome.gnome-keyring.enable = true;
+    # gnome.gnome-keyring.enable = true;
     blueman.enable = true;
     locate.enable = true;
     pulseaudio.enable = false;
@@ -199,6 +204,9 @@
 
   system.stateVersion = "25.05";
 
-  my.modules.profile = "yoga";
+  my.modules = {
+    profile = "yoga";
+    ssh.profile = "desktop";
+  };
 
 }
