@@ -49,6 +49,7 @@
                 (final: prev: {
                   stable = import nixpkgs-stable {
                     system = prev.system;
+                    config = prev.config;
                   };
                 })
                 (inputs.helix.overlays.default)

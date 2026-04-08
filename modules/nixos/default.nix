@@ -12,13 +12,14 @@ in
   };
   config = {
     my.modules.office.enable = (p == "yoga");
-
+    my.overlays.spotify-wayland.enable = (p == "yoga");
   };
   imports = [
     ./fonts.nix
     ./localization.nix
     ./networking.nix
     ./office.nix
+    ./spotify-wayland.nix
     ./ssh.nix
     ./store.nix
   ];

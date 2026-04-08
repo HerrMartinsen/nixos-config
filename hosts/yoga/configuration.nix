@@ -94,12 +94,10 @@
     # hypridle
     # wlogout
     # grimblast
-
-    (import ../../modules/nixos/spotify.nix { inherit pkgs; })
-
     wasistlos
 
     spotify-player
+    spotify
 
     yazi
 
