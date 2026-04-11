@@ -12,7 +12,7 @@ in
   };
   config = {
     my.modules.office.enable = (p == "yoga");
-    my.overlays.spotify-wayland.enable = (p == "yoga");
+    my.overlays.spotify-wayland.enable = lib.mkDefault (p == "yoga");
   };
   imports = [
     ./fonts.nix

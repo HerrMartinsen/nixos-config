@@ -97,7 +97,6 @@
     wasistlos
 
     spotify-player
-    spotify
 
     yazi
 
@@ -163,6 +162,15 @@
       };
       flake = "/home/martin/nixos-config"; # sets NH_OS_FLAKE variable for you
     };
+    spicetify = {
+      enable = true;
+      theme = inputs.spicetify-nix.legacyPackages.${pkgs.system}.themes.catppuccin;
+      colorScheme = "mocha";
+      spotifyLaunchFlags = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
+      enabledExtensions = with inputs.spicetify-nix.legacyPackages.${pkgs.system}.extensions; [
+        catJamSynced
+      ];
+    };
     ssh = {
       extraConfig = "
         Host github.com
@@ -206,5 +214,6 @@
     profile = "yoga";
     ssh.profile = "desktop";
   };
+  my.overlays.spotify-wayland.enable = false;
 
 }

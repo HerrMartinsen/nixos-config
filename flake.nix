@@ -19,6 +19,10 @@
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -67,6 +71,7 @@
           hostname = "yoga";
           extraModules = [
             inputs.catppuccin.nixosModules.catppuccin
+            inputs.spicetify-nix.nixosModules.spicetify
             ./modules/nixos/hyprland.nix
           ];
         };
