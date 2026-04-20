@@ -20,7 +20,7 @@ in
   config = lib.mkIf config.my.homeManager.vscode.enable {
     programs.vscode = {
       enable = true;
-      # package = pkgs.vscodium;
+      # package = pkgs.vscode-fhs;
       profiles.default = {
         userSettings = {
           "files.autoSave" = "onFocusChange";
@@ -48,6 +48,9 @@ in
 
             # Optional (nice for CSV-like tables)
             ms-toolsai.datawrangler
+
+            #PDF
+            tomoki1207.pdf
           ])
           ++ [ tensorboardExt ];
       };

@@ -29,8 +29,9 @@ in
       ];
     };
 
-    programs.ssh = lib.mkIf (sshp == "desktop") {
-      startAgent = true;
+    programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
     };
   };
 }

@@ -18,13 +18,16 @@
     # waybar.enable = true;
     # thunderbird.enable = true;
   };
-  # gtk.enable = true;
+  gtk.enable = true;
+  gtk.gtk4.theme = null;
+  gtk.colorScheme = "dark";
   #  services.dunst.enable = true;
   catppuccin = {
     enable = true;
     flavor = "mocha";
     accent = "mauve";
     cursors.enable = true;
-    # gtk.icon.enable = false;
+    qt5ct.enable = true;
+    gtk.icon.enable = false;
   };
 }

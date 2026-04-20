@@ -6,7 +6,7 @@
       pyright
       ruff
       nixfmt
-      nil
+      nixd
       ltex-ls-plus
       lua-language-server
       tree-sitter
@@ -43,7 +43,9 @@
       language = [
         {
           name = "nix";
-          language-servers = [ "nil" ];
+          language-servers = [
+            "nixd"
+          ];
           auto-format = true;
           formatter.command = lib.getExe pkgs.nixfmt;
         }
@@ -75,10 +77,7 @@
         }
       ];
       language-server = {
-        nil = {
-          command = "nil";
-          config.nil.nix.flake.autoArchive = true;
-        };
+        nixd.command = "nixd";
         pyright = {
           command = "pyright-langserver";
           args = [ "--stdio" ];
