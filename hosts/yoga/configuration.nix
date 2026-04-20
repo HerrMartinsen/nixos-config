@@ -135,6 +135,8 @@
 
     dbeaver-bin
     basex
+
+    comma
   ];
 
   services = {
