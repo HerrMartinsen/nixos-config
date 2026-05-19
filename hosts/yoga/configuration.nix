@@ -15,6 +15,7 @@
     kernelParams = [ "resume_offset=12550144" ];
     resumeDevice = "/dev/disk/by-uuid/6db45830-dbd2-4599-8965-c6d8b6c71bba";
     plymouth.enable = true;
+    kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
   };
 
   networking.networkmanager.plugins = [ pkgs.networkmanager-fortisslvpn ];
@@ -26,13 +27,13 @@
   ];
   nix.settings = {
     substituters = [
-      "https://nix-community.cachix.org"
       "https://cache.nixos.org/"
+      "https://nix-community.cachix.org"
       "https://ros.cachix.org"
     ];
     trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo="
     ];
   };
@@ -105,8 +106,7 @@
     # hypridle
     # wlogout
     # grimblast
-    wasistlos
-
+    karere
     spotify-player
 
     yazi
@@ -167,7 +167,10 @@
       enable = true;
       nix-direnv.enable = true;
     };
-    command-not-found.enable = true;
+    nix-index.enable = true;
+    bash.interactiveShellInit = ''
+      source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+    '';
     firefox.enable = true;
     thunderbird.enable = true;
     git.enable = true;

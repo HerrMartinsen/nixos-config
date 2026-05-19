@@ -20,7 +20,7 @@ in
   config = lib.mkIf config.my.homeManager.vscode.enable {
     programs.vscode = {
       enable = true;
-      # package = pkgs.vscode-fhs;
+      package = pkgs.vscode-fhs;
       profiles.default = {
         userSettings = {
           "files.autoSave" = "onFocusChange";

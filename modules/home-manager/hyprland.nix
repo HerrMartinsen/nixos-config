@@ -14,6 +14,7 @@
       "$menu" = "rofi -show drun -show-icons";
       "$colorPicker" = "hyprpicker";
       "$rofi-todo" = "/home/martin/rofi-todo/rofi-todo.sh";
+      "$monitor_config" = "hyprmon";
 
       ecosystem = {
         no_update_news = true;
@@ -100,10 +101,11 @@
         "$mainMod ALT, Z, exec, grimblast --freeze --notify copysave area"
         "$mainMod, I, exec, $ide"
         "$mainMod CTRL, P, pseudo, # dwindle"
-        "$mainMod, P, exec, $colorPicker | wl-copy"
+        "$mainMod ALT, P, exec, $colorPicker | wl-copy"
+        "$mainMod, P, exec, $terminal $monitor_config"
 
         "$mainMod, F, exec, $fileManager"
-        "$mainMod, J, togglesplit, # dwindle"
+        # "$mainMod, J, layoutmsg, togglesplit, # dwindle"
         "$mainMod, L, exec, hyprlock"
 
         "$mainMod, C, killactive,"

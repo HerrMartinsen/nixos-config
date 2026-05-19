@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   services.displayManager.sddm = {
@@ -30,6 +30,7 @@
     grimblast
     ntfs3g
     udiskie
+    hyprmon
   ];
 
 }
