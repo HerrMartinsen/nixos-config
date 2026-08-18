@@ -24,12 +24,20 @@ in
       profiles.default = {
         userSettings = {
           "files.autoSave" = "onFocusChange";
+          "github.copilot.nextEditSuggestions.eagerness" = "low";
+          "github.copilot.nextEditSuggestions.enabled" = false;
+          "editor.formatOnSave" = true;
+          "[python]" = {
+            "editor.defaultFormatter" = "ms-python.black-formatter";
+          };
         };
         extensions =
           (with pkgs.vscode-extensions; [
             # Python
             ms-python.python
             ms-python.vscode-pylance
+            ms-python.black-formatter
+            ms-python.isort
 
             # Jupyter notebooks
             ms-toolsai.jupyter

@@ -13,20 +13,20 @@
   };
   environment.systemPackages = with pkgs; [
     kitty
-    rofi
+    # rofi
     pavucontrol
-    waybar
+    # waybar
     libnotify
-    hyprpaper
+    # hyprpaper
     brightnessctl
     networkmanagerapplet
     xdg-desktop-portal-gtk
     hyprpolkitagent
     wl-clipboard
     hyprpicker
-    hyprlock
-    hypridle
-    wlogout
+    # hyprlock
+    # hypridle
+    # wlogout
     grimblast
     ntfs3g
     udiskie

@@ -2,7 +2,7 @@
 
 {
   home.pointerCursor.hyprcursor.enable = true;
-  services.swaync.enable = true;
+  # services.swaync.enable = true;
   programs = {
     spotify-player.enable = true;
     hyprlock.enable = true;
@@ -22,12 +22,4 @@
   gtk.gtk4.theme = null;
   gtk.colorScheme = "dark";
   #  services.dunst.enable = true;
-  catppuccin = {
-    enable = true;
-    flavor = "mocha";
-    accent = "mauve";
-    cursors.enable = true;
-    qt5ct.enable = true;
-    gtk.icon.enable = false;
-  };
 }

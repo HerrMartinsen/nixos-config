@@ -18,6 +18,7 @@ in
     ./fonts.nix
     ./localization.nix
     ./networking.nix
+    ./noctalia.nix
     ./office.nix
     ./spotify-wayland.nix
     ./ssh.nix

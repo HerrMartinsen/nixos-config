@@ -14,6 +14,7 @@
     enable = true;
     defaultEditor = true;
     settings = {
+      theme = "catppuccin_mocha";
       editor = {
         default-yank-register = "+";
         cursor-shape.insert = "bar";

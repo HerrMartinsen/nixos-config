@@ -10,17 +10,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    catppuccin = {
-      url = "github:catppuccin/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     helix = {
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -70,9 +76,14 @@
           system = "x86_64-linux";
           hostname = "yoga";
           extraModules = [
-            inputs.catppuccin.nixosModules.catppuccin
             inputs.spicetify-nix.nixosModules.spicetify
+            inputs.noctalia-greeter.nixosModules.default
             ./modules/nixos/hyprland.nix
+            {
+              nixpkgs.config.permittedInsecurePackages = [
+                "electron-39.8.10"
+              ];
+            }
           ];
         };
         # Config Server RGB

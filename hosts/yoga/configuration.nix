@@ -12,8 +12,8 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    kernelParams = [ "resume_offset=12550144" ];
-    resumeDevice = "/dev/disk/by-uuid/6db45830-dbd2-4599-8965-c6d8b6c71bba";
+    # kernelParams = [ "resume_offset=12550144" ];
+    # resumeDevice = "/dev/disk/by-uuid/6db45830-dbd2-4599-8965-c6d8b6c71bba";
     plymouth.enable = true;
     kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
   };
@@ -30,11 +30,13 @@
       "https://cache.nixos.org/"
       "https://nix-community.cachix.org"
       "https://ros.cachix.org"
+      "https://noctalia.cachix.org"
     ];
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo="
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
     ];
   };
 
@@ -44,18 +46,8 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "input"
     ];
-  };
-
-  catppuccin = {
-    enable = true;
-    flavor = "mocha";
-    accent = "mauve";
-    cache.enable = true;
-    sddm.enable = true;
-    grub.enable = true;
-    tty.enable = true;
-    plymouth.enable = true;
   };
 
   home-manager = {
@@ -64,7 +56,7 @@
       "martin" = {
         imports = [
           ./home.nix
-          inputs.catppuccin.homeModules.catppuccin
+          inputs.noctalia.homeModules.default
         ];
       };
     };
@@ -124,7 +116,7 @@
 
     helix
 
-    zotero
+    # zotero
     blender
     atril
 
@@ -133,10 +125,14 @@
 
     bat
 
-    dbeaver-bin
-    basex
+    # dbeaver-bin
+    # basex
 
     comma
+
+    remmina
+
+    qt6Packages.qtstyleplugin-kvantum
   ];
 
   services = {
@@ -149,10 +145,6 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-    };
-    logind.settings.Login = {
-      HandlePowerKey = "hibernate";
-      HandleLidSwitch = "suspend-then-hibernate";
     };
     onedrive.enable = true;
     udisks2.enable = true;
@@ -182,6 +174,10 @@
         extraArgs = "--keep-since 2d --keep 3";
       };
       flake = "/home/martin/nixos-config"; # sets NH_OS_FLAKE variable for you
+    };
+    noctalia-greeter = {
+      enable = true;
+      package = inputs.noctalia-greeter.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
     spicetify = {
       enable = true;
@@ -222,12 +218,12 @@
   hardware.bluetooth.enable = true;
   hardware.graphics.enable = true;
 
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 16 * 1024;
-    }
-  ];
+  # swapDevices = [
+  #   {
+  #     device = "/var/lib/swapfile";
+  #     size = 16 * 1024;
+  #   }
+  # ];
 
   system.stateVersion = "25.05";
 

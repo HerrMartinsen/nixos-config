@@ -17,7 +17,6 @@ in
   config = {
     my.homeManager = {
       # hyprland.enable = hmp == "desktop";
-      # catppuccin.enable = true;
       # helix.enable = true;
       # kitty.enable = hmp == "desktop";
       # waybar.enable = hmp == "desktop";
@@ -38,14 +37,14 @@ in
 
   };
   imports = [
-    ./hyprland.nix
-    ./hyprpaper.nix
-    ./catppuccin.nix
+    ./clipboard.nix
     #./firefox.nix
     ./helix.nix
+    ./hyprland.nix
+    ./hyprpaper.nix
     ./kitty.nix
-    ./waybar.nix
+    ./noctalia.nix
     ./vscode.nix
-    ./clipboard.nix
+    # ./waybar.nix
   ];
 }

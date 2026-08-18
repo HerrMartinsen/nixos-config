@@ -3,6 +3,7 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "hyprlang";
     systemd.enable = false;
     settings = {
       "$mainMod" = "SUPER";
@@ -11,9 +12,9 @@
       "$browser" = "firefox";
       "$editor" = "hx";
       "$ide" = "code";
-      "$menu" = "rofi -show drun -show-icons";
+      # "$menu" = "rofi -show drun -show-icons";
       "$colorPicker" = "hyprpicker";
-      "$rofi-todo" = "/home/martin/rofi-todo/rofi-todo.sh";
+      # "$rofi-todo" = "/home/martin/rofi-todo/rofi-todo.sh";
       "$monitor_config" = "hyprmon";
 
       ecosystem = {
@@ -32,12 +33,15 @@
         "desc:Samsung Electric Company LC34G55T HNBX801468, preferred, -760x-1440, 1"
         #Home HP
         # "desc:HP Inc. HP 25x CNK9061K09, preferred, auto-right-up, 1"
+        # HSP
+        "desc:Lenovo Group Limited P27h-30 V30C806Y, preferred, -640x-1440, 1"
+        "desc:Hewlett Packard HP E242 CNC6120K42, preferred, 1920x-1200, 1"
       ];
 
       general = {
         # layout = master;
-        "col.active_border" = "$accent";
-        "col.inactive_border" = "$base";
+        # "col.active_border" = "$accent";
+        # "col.inactive_border" = "$base";
       };
 
       decoration = {
@@ -58,8 +62,8 @@
           enabled = true;
           range = 4;
           render_power = 4;
-          color = "$accent";
-          color_inactive = "$base";
+          # color = "$accent";
+          # color_inactive = "$base";
         };
 
         inactive_opacity = 0.9;
@@ -87,7 +91,7 @@
       ];
 
       bind = [
-        "$mainMod, ESCAPE, exec, wlogout"
+        # "$mainMod, ESCAPE, exec, wlogout"
         ", Print, exec, grimblast --freeze --notify copysave screen"
 
         "$mainMod, TAB, exec, rofi -show window"
@@ -106,7 +110,7 @@
 
         "$mainMod, F, exec, $fileManager"
         # "$mainMod, J, layoutmsg, togglesplit, # dwindle"
-        "$mainMod, L, exec, hyprlock"
+        # "$mainMod, L, exec, hyprlock"
 
         "$mainMod, C, killactive,"
         # "$mainMod, V, exec, cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy"
@@ -193,14 +197,15 @@
 
       exec-once = [
         "systemctl --user start hyprpolkitagent"
-        "swaync"
-        "waybar"
+        # "swaync"
+        # "waybar"
         # "wl-paste --type text --watch cliphist store"
         # "wl-paste --type image --watch cliphist store"
-        "hypridle"
+        # "hypridle"
         "nm-applet --indicator"
         "blueman-applet"
         "udiskie --tray"
+        "noctalia"
       ];
       env = [
         # QT
