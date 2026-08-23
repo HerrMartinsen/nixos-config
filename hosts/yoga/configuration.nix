@@ -179,15 +179,19 @@
       enable = true;
       package = inputs.noctalia-greeter.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
-    spicetify = {
-      enable = true;
-      theme = inputs.spicetify-nix.legacyPackages.${pkgs.system}.themes.catppuccin;
-      colorScheme = "mocha";
-      spotifyLaunchFlags = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
-      enabledExtensions = with inputs.spicetify-nix.legacyPackages.${pkgs.system}.extensions; [
-        catJamSynced
-      ];
-    };
+    spicetify =
+      let
+        spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
+      in
+      {
+        enable = false;
+        theme = spicePkgs.themes.catppuccin;
+        colorScheme = "mocha";
+        spotifyLaunchFlags = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
+        enabledExtensions = with spicePkgs.extensions; [
+          catJamSynced
+        ];
+      };
     ssh = {
       extraConfig = "
         Host github.com

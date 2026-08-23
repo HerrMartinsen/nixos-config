@@ -1,0 +1,18 @@
+{
+  "workspace": {
+    "library": [
+      "/nix/store/pz612gk98y0w90ji236cc1dv3m8a7niv-hyprland-0.56.1/share/hypr/stubs"
+    ]
+  },
+    "diagnostics.globals": [
+        "mainMod",
+        "browser",
+        "terminal",
+        "colorPicker",
+        "editor",
+        "fileManager",
+        "ide",
+        "monitor_config",
+        "launcher"
+    ]
+}

@@ -3,232 +3,58 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    configType = "hyprlang";
+    configType = "lua";
     systemd.enable = false;
-    settings = {
-      "$mainMod" = "SUPER";
-      "$terminal" = "kitty";
-      "$fileManager" = "dolphin";
-      "$browser" = "firefox";
-      "$editor" = "hx";
-      "$ide" = "code";
-      # "$menu" = "rofi -show drun -show-icons";
-      "$colorPicker" = "hyprpicker";
-      # "$rofi-todo" = "/home/martin/rofi-todo/rofi-todo.sh";
-      "$monitor_config" = "hyprmon";
+    extraConfig = ''
+      require("test")
 
-      ecosystem = {
-        no_update_news = true;
-      };
-
-      monitor = [
-        "eDP-1,preferred,0x0,1"
-        #FS Left
-        "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000850, preferred, -960x-1200,1"
-        "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000842, preferred, 960x-1200, 1"
-        #FS Right
-        "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000844, preferred, -960x-1200,1"
-        "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000852, preferred, 960x-1200, 1"
-        #Home UltraWide
-        "desc:Samsung Electric Company LC34G55T HNBX801468, preferred, -760x-1440, 1"
-        #Home HP
-        # "desc:HP Inc. HP 25x CNK9061K09, preferred, auto-right-up, 1"
-        # HSP
-        "desc:Lenovo Group Limited P27h-30 V30C806Y, preferred, -640x-1440, 1"
-        "desc:Hewlett Packard HP E242 CNC6120K42, preferred, 1920x-1200, 1"
-      ];
-
-      general = {
-        # layout = master;
-        # "col.active_border" = "$accent";
-        # "col.inactive_border" = "$base";
-      };
-
-      decoration = {
-        rounding = 10;
-
-        blur = {
-          enabled = true;
-          xray = true;
-          new_optimizations = true;
-          size = 6;
-          passes = 3;
-          ignore_opacity = true;
-          noise = 1.0e-2;
-          contrast = 1;
-        };
-
-        shadow = {
-          enabled = true;
-          range = 4;
-          render_power = 4;
-          # color = "$accent";
-          # color_inactive = "$base";
-        };
-
-        inactive_opacity = 0.9;
-        active_opacity = 0.95;
-      };
-
-      input = {
-        kb_layout = "de";
-        kb_variant = "nodeadkeys";
-        follow_mouse = 1;
-        sensitivity = 0.4;
-        touchpad = {
-          natural_scroll = true;
-          drag_lock = 1;
-        };
-
-      };
-
-      gestures = {
-        workspace_swipe_forever = true;
-      };
-
-      gesture = [
-        "3, horizontal, workspace"
-      ];
-
-      bind = [
-        # "$mainMod, ESCAPE, exec, wlogout"
-        ", Print, exec, grimblast --freeze --notify copysave screen"
-
-        "$mainMod, TAB, exec, rofi -show window"
-        "$mainMod, Q, exec, $terminal"
-        "$mainMod, W, togglefloating,"
-        "$mainMod CTRL, W, fullscreen,"
-        "$mainMod, E, exec, $terminal $editor"
-        "$mainMod, R, exec, $menu"
-        "$mainMod, T, exec, $rofi-todo"
-        "$mainMod, Z, exec, grimblast --freeze --notify copysave active"
-        "$mainMod ALT, Z, exec, grimblast --freeze --notify copysave area"
-        "$mainMod, I, exec, $ide"
-        "$mainMod CTRL, P, pseudo, # dwindle"
-        "$mainMod ALT, P, exec, $colorPicker | wl-copy"
-        "$mainMod, P, exec, $terminal $monitor_config"
-
-        "$mainMod, F, exec, $fileManager"
-        # "$mainMod, J, layoutmsg, togglesplit, # dwindle"
-        # "$mainMod, L, exec, hyprlock"
-
-        "$mainMod, C, killactive,"
-        # "$mainMod, V, exec, cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy"
-        "$mainMod, V, exec, $terminal --class clipse -e 'clipse'"
-        "$mainMod, B, exec, $browser"
-        "$mainMod CTRL, M, exit,"
-
-        # Move focus with mainMod + arrow keys
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
-
-        # Switch workspaces with mainMod + [0-9]
-        "$mainMod, 1, workspace, 1"
-        "$mainMod, 2, workspace, 2"
-        "$mainMod, 3, workspace, 3"
-        "$mainMod, 4, workspace, 4"
-        "$mainMod, 5, workspace, 5"
-        "$mainMod, 6, workspace, 6"
-        "$mainMod, 7, workspace, 7"
-        "$mainMod, 8, workspace, 8"
-        "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 10"
-
-        # Move active window to a workspace with mainMod + SHIFT + [0-9]
-        "$mainMod SHIFT, 1, movetoworkspace, 1"
-        "$mainMod SHIFT, 2, movetoworkspace, 2"
-        "$mainMod SHIFT, 3, movetoworkspace, 3"
-        "$mainMod SHIFT, 4, movetoworkspace, 4"
-        "$mainMod SHIFT, 5, movetoworkspace, 5"
-        "$mainMod SHIFT, 6, movetoworkspace, 6"
-        "$mainMod SHIFT, 7, movetoworkspace, 7"
-        "$mainMod SHIFT, 8, movetoworkspace, 8"
-        "$mainMod SHIFT, 9, movetoworkspace, 9"
-        "$mainMod SHIFT, 0, movetoworkspace, 10"
-
-        # Special workspaces
-        # Scratchpad
-        "$mainMod, S, togglespecialworkspace, magic"
-        "$mainMod SHIFT, S, movetoworkspace, special:magic"
-        # Music Spotify
-        "$mainMod, M, exec, pgrep -x spotify || spotify; hyprctl dispatch togglespecialworkspace music"
-        "$mainMod SHIFT, M, movetoworkspace, special:music"
-
-        # Scroll through existing workspaces with mainMod + scroll
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
-      ];
-      bindm = [
-        # Move/resize windows with mainMod + LMB/RMB and dragging
-        "$mainMod, mouse:272, movewindow"
-        "$mainMod, mouse:273, resizewindow"
-      ];
-      bindel = [
-        # Laptop multimedia keys for volume and LCD brightness
-        ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-        ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        ",XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+"
-        ",XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
-      ];
-      bindl = [
-        # Requires playerctl
-        ", XF86AudioNext, exec, playerctl next"
-        ", XF86AudioPause, exec, playerctl play-pause"
-        ", XF86AudioPlay, exec, playerctl play-pause"
-        ", XF86AudioPrev, exec, playerctl previous"
-      ];
-
-      windowrule = [
-        # Ignore maximize requests from apps. You'll probably like this.
-        "match:class .*, suppress_event maximize"
-
-        # Fix some dragging issues with XWayland
-        "match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0, suppress_event activate activatefocus, no_initial_focus 1"
-        #Spotify only on special workspace
-        "match:initial_class ^(spotify)$, workspace special:music"
-
-        "match:class clipse, float true"
-        "match:class clipse, size 622 652"
-      ];
-
-      exec-once = [
-        "systemctl --user start hyprpolkitagent"
-        # "swaync"
-        # "waybar"
-        # "wl-paste --type text --watch cliphist store"
-        # "wl-paste --type image --watch cliphist store"
-        # "hypridle"
-        "nm-applet --indicator"
-        "blueman-applet"
-        "udiskie --tray"
-        "noctalia"
-      ];
-      env = [
-        # QT
-        "QT_QPA_PLATFORM,wayland;xcb"
-        "QT_QPA_PLATFORMTHEME,qt6ct"
-        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-        "QT_AUTO_SCREEN_SCALE_FACTOR,1"
-        "QT_STYLE_OVERRIDE,kvantum"
-
-        # Toolkit Backend Variables
-        "GDK_BACKEND,wayland,x11,*"
-        "SDL_VIDEODRIVER,wayland"
-        "CLUTTER_BACKEND,wayland"
-
-        # XDG Specifications
-        "XDG_CURRENT_DESKTOP,Hyprland"
-        "XDG_SESSION_TYPE,wayland"
-        "XDG_SESSION_DESKTOP,Hyprland"
-        "XDG_SCREENSHOTS_DIR,/home/martin/screenshots"
-
-        "HYPRCURSOR_THEME,catppuccin-mocha-mauve-cursors"
-        "HYPRCURSOR_SIZE,24"
-      ];
+      hl.config({
+        decoration = {
+          blur = {
+            contrast = 1,
+            enabled = true,
+            ignore_opacity = true,
+            new_optimizations = true,
+            noise = 0.010000,
+            passes = 3,
+            size = 6,
+            xray = true,
+          },
+          shadow = {
+            enabled = true,
+            range = 4,
+            render_power = 4,
+          },
+          active_opacity = 0.950000,
+          inactive_opacity = 0.900000,
+          rounding = 10,
+        },
+        ecosystem = {
+          no_update_news = true,
+        },
+        gestures = {
+          workspace_swipe_forever = true,
+        },
+        input = {
+          touchpad = {
+          drag_lock = 1,
+          natural_scroll = true,
+        },
+        follow_mouse = 1,
+        kb_layout = "de",
+        kb_variant = "nodeadkeys",
+        sensitivity = 0.400000,
+        },
+      })
+    '';
+    extraLuaFiles = {
+      "a_variables".content = ../../other/hyprland/variables.lua;
+      "bind".content = ../../other/hyprland/bind.lua;
+      "env".content = ../../other/hyprland/env.lua;
+      "monitor".content = ../../other/hyprland/monitor.lua;
+      "windowrule".content = ../../other/hyprland/windowrule.lua;
+      "exec-once".content = ../../other/hyprland/exec-once.lua;
+      "gestures".content = ../../other/hyprland/gestures.lua;
     };
   };
 }

@@ -1,0 +1,10 @@
+browser = "firefox"
+colorPicker = "hyprpicker"
+editor = "hx"
+fileManager = "dolphin"
+ide = "code"
+launcher = "noctalia msg panel-open launcher"
+mainMod = "SUPER"
+monitor_config = "hyprmon"
+terminal = "kitty"
+
