@@ -52,10 +52,18 @@ hl.bind(mainMod .. " + SHIFT + 8", hl.dsp.window.move({ workspace = 8 }), { desc
 hl.bind(mainMod .. " + SHIFT + 9", hl.dsp.window.move({ workspace = 9 }), { description = "Move window to workspace 9" })
 hl.bind(mainMod .. " + SHIFT + 0", hl.dsp.window.move({ workspace = 10 }),
   { description = "Move window to workspace 10" })
-hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"), {description="Open scratch pad"})
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }), {description="Move window to scratch pad"})
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("pgrep -x spotify || spotify; hyprctl dispatch togglespecialworkspace music"), {description="Open Spotify"})
-hl.bind(mainMod .. " + SHIFT + M", hl.dsp.window.move({ workspace = "special:music" }), {description="Move window to music workspace"})
+hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"), { description = "Open scratch pad" })
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }),
+  { description = "Move window to scratch pad" })
+hl.bind(mainMod .. " + M", function()
+  local window = hl.get_window("class:spotify")
+  if not window then
+    hl.dispatch(hl.dsp.exec_cmd("spotify"))
+  end
+  hl.dispatch(hl.dsp.workspace.toggle_special("music"))
+end, { description = "Open Spotify" })
+hl.bind(mainMod .. " + SHIFT + M", hl.dsp.window.move({ workspace = "special:music" }),
+  { description = "Move window to music workspace" })
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
@@ -77,3 +85,32 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag())
 hl.bind(mainMod .. " + SHIFT + mouse:272", hl.dsp.window.resize())
+
+hl.bind("ALT + tab", function()
+  local layouts   = { "scrolling", "dwindle", "master", "monocle" }
+  local workspace = hl.get_active_workspace()
+  if hl.get_active_special_workspace() then
+    workspace = hl.get_active_special_workspace()
+  end
+
+  local next_layout = "dwindle"
+
+  if not workspace then
+    return
+  end
+
+  for i = 1, #layouts do
+    if layouts[i] == workspace.tiled_layout then
+      local next_layout_idx = (i % #layouts) + 1
+      next_layout = layouts[next_layout_idx]
+      break
+    end
+  end
+
+  if workspace.special then
+    hl.workspace_rule({ workspace = tostring(workspace.name), layout = next_layout })
+  else
+    hl.workspace_rule({ workspace = tostring(workspace.id), layout = next_layout })
+  end
+  hl.notification.create({ text = "Switching to " .. next_layout, timeout = 1500 })
+end, { description = "Cycle Layouts" })

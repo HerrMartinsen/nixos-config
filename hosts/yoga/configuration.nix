@@ -184,7 +184,7 @@
         spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
       in
       {
-        enable = false;
+        enable = true;
         theme = spicePkgs.themes.catppuccin;
         colorScheme = "mocha";
         spotifyLaunchFlags = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
