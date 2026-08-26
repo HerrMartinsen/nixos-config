@@ -133,10 +133,14 @@
     remmina
 
     qt6Packages.qtstyleplugin-kvantum
+    adwaita-icon-theme
+
+    claude-code
+    inputs.claude-desktop-nix.packages.x86_64-linux.default
   ];
 
   services = {
-    # gnome.gnome-keyring.enable = true;
+    gnome.gnome-keyring.enable = true;
     blueman.enable = true;
     locate.enable = true;
     pulseaudio.enable = false;
@@ -179,6 +183,7 @@
       enable = true;
       package = inputs.noctalia-greeter.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
+    seahorse.enable = true;
     spicetify =
       let
         spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
@@ -234,6 +239,7 @@
   my.modules = {
     profile = "yoga";
     ssh.profile = "desktop";
+    office.enable = false;
   };
   my.overlays.spotify-wayland.enable = false;
 

@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "claude-desktop-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1787726611,
+        "narHash": "sha256-57OtMUY0miuVwpaIru9uwNAcjCXkbrACPmTnt6VDaAM=",
+        "owner": "tomsch",
+        "repo": "claude-desktop-nix",
+        "rev": "3c6121dd06d93896413b043e73d78897b52d9c54",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tomsch",
+        "repo": "claude-desktop-nix",
+        "type": "github"
+      }
+    },
     "helix": {
       "inputs": {
         "nixpkgs": [
@@ -115,6 +135,7 @@
     },
     "root": {
       "inputs": {
+        "claude-desktop-nix": "claude-desktop-nix",
         "helix": "helix",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
