@@ -19,6 +19,7 @@
   };
 
   networking.networkmanager.plugins = [ pkgs.networkmanager-fortisslvpn ];
+  # networking.firewall.enable = false; for screen casting
   powerManagement.enable = true;
 
   nix.settings.experimental-features = [
@@ -140,8 +141,9 @@
   ];
 
   services = {
-    gnome.gnome-keyring.enable = true;
+    avahi.enable = true;
     blueman.enable = true;
+    gnome.gnome-keyring.enable = true;
     locate.enable = true;
     pulseaudio.enable = false;
     pipewire = {
@@ -159,14 +161,18 @@
     rtkit.enable = true;
   };
   programs = {
+    atuin.enable = true;
     direnv = {
       enable = true;
       nix-direnv.enable = true;
     };
     nix-index.enable = true;
-    bash.interactiveShellInit = ''
-      source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
-    '';
+    bash = {
+      interactiveShellInit = ''
+        source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+      '';
+      blesh.enable = true;
+    };
     firefox.enable = true;
     thunderbird.enable = true;
     git.enable = true;
@@ -222,6 +228,7 @@
           IdentityFile ~/.ssh/id_ed25519_yoga_nixos
     ";
     };
+    starship.enable = true;
   };
 
   hardware.bluetooth.enable = true;
