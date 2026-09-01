@@ -138,6 +138,7 @@
 
     claude-code
     inputs.claude-desktop-nix.packages.x86_64-linux.default
+    microfetch
   ];
 
   services = {
@@ -161,7 +162,10 @@
     rtkit.enable = true;
   };
   programs = {
-    atuin.enable = true;
+    atuin = {
+      enable = true;
+      settings.auto_sync = false;
+    };
     direnv = {
       enable = true;
       nix-direnv.enable = true;
@@ -170,8 +174,8 @@
     bash = {
       interactiveShellInit = ''
         source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+        microfetch
       '';
-      blesh.enable = true;
     };
     firefox.enable = true;
     thunderbird.enable = true;
