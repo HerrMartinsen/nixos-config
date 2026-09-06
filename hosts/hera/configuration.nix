@@ -20,6 +20,10 @@
     description = "Martin";
     extraGroups = [ "wheel" ];
   };
+  # dedicated passphrase-less key for nix-daemon (root) on yoga to use hera as a remote builder
+  users.users.martin.openssh.authorizedKeys.keyFiles = [
+    ../../keys/id_ed25519_yoga_remote_builder.pub
+  ];
 
   environment.systemPackages = with pkgs; [
     htop

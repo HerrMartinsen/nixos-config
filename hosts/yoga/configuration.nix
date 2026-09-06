@@ -33,7 +33,7 @@
       hostName = "192.168.1.184";
       system = "x86_64-linux";
       sshUser = "martin";
-      sshKey = "/home/martin/.ssh/id_ed25519_yoga_nixos";
+      sshKey = "/root/.ssh/id_ed25519_yoga_remote_builder";
       maxJobs = 9;
       speedFactor = 2;
       supportedFeatures = [
