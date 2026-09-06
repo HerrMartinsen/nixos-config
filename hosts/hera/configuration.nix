@@ -22,6 +22,8 @@
   environment.systemPackages = with pkgs; [
     htop
     wget
+    git
+    helix
   ];
 
   my.modules.ssh.profile = "server";
