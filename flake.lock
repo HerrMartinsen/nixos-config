@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787814988,
-        "narHash": "sha256-Pjo2fDr3Y+uvf/7GtmiAFe0F9OBTfgngyxRqvPplj8o=",
+        "lastModified": 1788536714,
+        "narHash": "sha256-FeGQmJLwff0MjoY1sMJNi9rYdpi6wzDFiZe6YbwwmmU=",
         "owner": "tomsch",
         "repo": "claude-desktop-nix",
-        "rev": "68fc4e53c45a3a8d43da6927d789518819b26452",
+        "rev": "567f1bff53d8f33df29b5e27b3b5bf44b98d11ef",
         "type": "github"
       },
       "original": {
