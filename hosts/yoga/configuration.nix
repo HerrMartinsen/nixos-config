@@ -26,6 +26,26 @@
     "nix-command"
     "flakes"
   ];
+
+  nix.distributedBuilds = true;
+  nix.buildMachines = [
+    {
+      hostName = "192.168.1.184";
+      system = "x86_64-linux";
+      sshUser = "martin";
+      sshKey = "/home/martin/.ssh/id_ed25519_yoga_nixos";
+      maxJobs = 9;
+      speedFactor = 2;
+      supportedFeatures = [
+        "nixos-test"
+        "benchmark"
+        "big-parallel"
+        "kvm"
+      ];
+      publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUVYOTk4eXBKVHlKcXdMZHE1K1RlMEFUOU91Umt4SkxsejNuckRsQit0dGEgcm9vdEBoZXJhCg==";
+    }
+  ];
+
   nix.settings = {
     substituters = [
       "https://cache.nixos.org/"

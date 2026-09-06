@@ -12,6 +12,8 @@
     "nix-command"
     "flakes"
   ];
+  # martin must be trusted for yoga to use hera as a remote build machine
+  nix.settings.trusted-users = [ "martin" ];
 
   users.users.martin = {
     isNormalUser = true;
