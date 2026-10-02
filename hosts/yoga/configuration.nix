@@ -59,6 +59,7 @@
       "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo="
       "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
     ];
+    builders-use-substitutes = true;
   };
 
   users.users.martin = {
@@ -90,6 +91,10 @@
     NIXOS_OZONE_WL = "1";
     EDITOR = "hx";
   };
+  environment.etc."udisks2/mount_options.conf".text = ''
+    [defaults]
+    ntfs:driver=ntfs3g
+  '';
 
   environment.systemPackages = with pkgs; [
     htop
@@ -158,7 +163,6 @@
 
     claude-code
     inputs.claude-desktop-nix.packages.x86_64-linux.default
-    microfetch
   ];
 
   services = {
@@ -194,7 +198,6 @@
     bash = {
       interactiveShellInit = ''
         source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
-        microfetch
       '';
     };
     firefox.enable = true;
@@ -250,6 +253,13 @@
         Host im-kigs
           HostName im-kigs.oth-regensburg.de
           IdentityFile ~/.ssh/id_ed25519_yoga_nixos
+
+        Host sappzoltura.oth-regensburg.de
+          HostName sappzoltura.oth-regensburg.de
+          User git
+          IdentityFile ~/.ssh/sappz_gitea
+          IdentitiesOnly yes 
+ 
     ";
     };
     starship.enable = true;
