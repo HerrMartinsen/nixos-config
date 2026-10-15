@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   p = config.my.modules.profile;
 in
@@ -13,6 +18,15 @@ in
   config = {
     my.modules.office.enable = lib.mkDefault (p == "yoga");
     my.overlays.spotify-wayland.enable = lib.mkDefault (p == "yoga");
+    environment.systemPackages = with pkgs; [
+      htop
+      btop
+      unzip
+      wget
+      yazi
+      bat
+    ];
+
   };
   imports = [
     ./fonts.nix

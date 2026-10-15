@@ -18,7 +18,6 @@
     kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
   };
 
-  networking.networkmanager.plugins = [ pkgs.networkmanager-fortisslvpn ];
   # networking.firewall.enable = false; for screen casting
   powerManagement.enable = true;
 
@@ -97,37 +96,12 @@
   '';
 
   environment.systemPackages = with pkgs; [
-    htop
-    btop
-    unzip
-    wget
     wireguard-tools
-    # kitty
-    # rofi
-    # pavucontrol
-    # waybar
-    # libnotify
-    # hyprpaper
     kdePackages.dolphin
     nautilus
-    # brightnessctl
-    # networkmanagerapplet
-    #desktop portal for now
-    # xdg-desktop-portal-gtk
-    #for gui with elevated privlages
-    # hyprpolkitagent
-    #clipboard
-    # wl-clipboard
 
-    # hyprpicker
-    # hyprlock
-    # hypridle
-    # wlogout
-    # grimblast
     karere
     spotify-player
-
-    yazi
 
     zulip
     feh
@@ -149,11 +123,6 @@
     xauth
     signal-desktop
 
-    bat
-
-    # dbeaver-bin
-    # basex
-
     comma
 
     remmina
@@ -163,6 +132,12 @@
 
     claude-code
     inputs.claude-desktop-nix.packages.x86_64-linux.default
+
+    eduvpn-client
+
+    euro-office-desktopeditors
+
+    discord
   ];
 
   services = {
@@ -267,13 +242,6 @@
 
   hardware.bluetooth.enable = true;
   hardware.graphics.enable = true;
-
-  # swapDevices = [
-  #   {
-  #     device = "/var/lib/swapfile";
-  #     size = 16 * 1024;
-  #   }
-  # ];
 
   system.stateVersion = "25.05";
 
