@@ -30,6 +30,7 @@ in
           "[python]" = {
             "editor.defaultFormatter" = "ms-python.black-formatter";
           };
+          "remote.SSH.localServerDownload" = "always";
         };
         extensions =
           (with pkgs.vscode-extensions; [

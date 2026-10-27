@@ -34,6 +34,7 @@ in
     ./networking.nix
     ./noctalia.nix
     ./office.nix
+    ./plymouth.nix
     ./spotify-wayland.nix
     ./ssh.nix
     ./store.nix

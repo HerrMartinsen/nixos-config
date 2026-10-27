@@ -14,7 +14,6 @@
     };
     # kernelParams = [ "resume_offset=12550144" ];
     # resumeDevice = "/dev/disk/by-uuid/6db45830-dbd2-4599-8965-c6d8b6c71bba";
-    plymouth.enable = true;
     kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
   };
 
@@ -186,10 +185,6 @@
         extraArgs = "--keep-since 2d --keep 3";
       };
       flake = "/home/martin/nixos-config"; # sets NH_OS_FLAKE variable for you
-    };
-    noctalia-greeter = {
-      enable = true;
-      package = inputs.noctalia-greeter.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
     seahorse.enable = true;
     spicetify =

@@ -1,10 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
-  services.displayManager.sddm = {
+  services.displayManager.noctalia-greeter = {
     enable = true;
-    wayland.enable = true;
-    package = pkgs.kdePackages.sddm;
+    package = inputs.noctalia-greeter.packages.${pkgs.stdenv.hostPlatform.system}.default;
   };
   programs.hyprland = {
     withUWSM = true;

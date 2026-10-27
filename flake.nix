@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-26.05";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -45,7 +45,6 @@
     let
       mkHost =
         {
-          system,
           hostname,
           extraModules ? [ ],
         }:
@@ -58,30 +57,7 @@
             ./modules/nixos
             ./hosts/${hostname}/configuration.nix
             inputs.home-manager.nixosModules.default
-            {
-              nixpkgs.overlays = [
-                (final: prev: {
-                  stable = import nixpkgs-stable {
-                    system = prev.system;
-                    config = prev.config;
-                  };
-                })
-                (inputs.helix.overlays.default)
-                # tree-sitter-perl vendors its own bsearch(), which glibc >= 2.42
-                # turns into a _Generic macro under gcc 16's default -std=gnu23.
-                (final: prev: {
-                  helix = prev.helix.override {
-                    grammarOverlays = [
-                      (gFinal: gPrev: {
-                        perl = gPrev.perl.overrideAttrs (old: {
-                          FLAGS = old.FLAGS ++ [ "-std=gnu17" ];
-                        });
-                      })
-                    ];
-                  };
-                })
-              ];
-            }
+            ./overlays
           ]
           ++ extraModules;
         };
@@ -90,7 +66,6 @@
       nixosConfigurations = {
         # Config Laptop
         yoga = mkHost {
-          system = "x86_64-linux";
           hostname = "yoga";
           extraModules = [
             inputs.spicetify-nix.nixosModules.spicetify
@@ -105,18 +80,15 @@
         };
         # Config Server RGB
         hermes = mkHost {
-          system = "x86_64-linux";
           hostname = "hermes";
           extraModules = [ ];
         };
         # Config Server KB
         zeus = mkHost {
-          system = "x86_64-linux";
           hostname = "zeus";
           extraModules = [ ];
         };
         hera = mkHost {
-          system = "x86_64-linux";
           hostname = "hera";
           extraModules = [ ];
         };
