@@ -45,7 +45,14 @@
       };
       flake = "/home/martin/nixos-config";
     };
-
+        ssh = {
+      extraConfig = "
+        Host github.com
+          HostName github.com
+          User git
+          IdentityFile ~/.ssh/id_ed25519_yoga_nixos
+          IdentitiesOnly yes
+      ";
   };
 
   my.modules.ssh.profile = "server";
