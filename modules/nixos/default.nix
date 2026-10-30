@@ -38,5 +38,6 @@ in
     ./spotify-wayland.nix
     ./ssh.nix
     ./store.nix
+    ./yubikey.nix
   ];
 }

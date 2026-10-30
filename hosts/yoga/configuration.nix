@@ -12,8 +12,6 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    # kernelParams = [ "resume_offset=12550144" ];
-    # resumeDevice = "/dev/disk/by-uuid/6db45830-dbd2-4599-8965-c6d8b6c71bba";
     kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
   };
 
@@ -88,6 +86,7 @@
   environment.variables = {
     NIXOS_OZONE_WL = "1";
     EDITOR = "hx";
+    NH_ELEVATION_STRATEGY = "run0";
   };
   environment.etc."udisks2/mount_options.conf".text = ''
     [defaults]
@@ -184,7 +183,7 @@
         enable = true;
         extraArgs = "--keep-since 2d --keep 3";
       };
-      flake = "/home/martin/nixos-config"; # sets NH_OS_FLAKE variable for you
+      flake = "/home/martin/nixos-config";
     };
     seahorse.enable = true;
     spicetify =
