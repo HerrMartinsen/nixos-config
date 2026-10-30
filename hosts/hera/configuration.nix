@@ -45,8 +45,7 @@
       };
       flake = "/home/martin/nixos-config";
     };
-        ssh = {
-      extraConfig = "
+    ssh.extraConfig = "
         Host github.com
           HostName github.com
           User git
