@@ -25,6 +25,10 @@
     ../../keys/id_ed25519_yoga_remote_builder.pub
   ];
 
+  environment.variables = {
+    EDITOR = "hx";
+  };
+
   environment.systemPackages = with pkgs; [
     htop
     wget
