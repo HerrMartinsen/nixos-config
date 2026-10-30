@@ -28,9 +28,21 @@
   environment.systemPackages = with pkgs; [
     htop
     wget
-    git
     helix
   ];
+
+  programs = {
+    git.enable = true;
+    nh = {
+      enable = true;
+      clean = {
+        enable = true;
+        extraArgs = "--keep-since 2d --keep 3";
+      };
+      flake = "/home/martin/nixos-config";
+    };
+
+  };
 
   my.modules.ssh.profile = "server";
 
