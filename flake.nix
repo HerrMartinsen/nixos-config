@@ -78,6 +78,21 @@
             }
           ];
         };
+        # Config Laptop
+        framework = mkHost {
+          hostname = "framework";
+          extraModules = [
+            inputs.spicetify-nix.nixosModules.spicetify
+            inputs.noctalia-greeter.nixosModules.default
+            ./modules/nixos/hyprland.nix
+            {
+              nixpkgs.config.permittedInsecurePackages = [
+                "electron-39.8.10"
+              ];
+            }
+          ];
+        };
+
         # Config Server RGB
         hermes = mkHost {
           hostname = "hermes";

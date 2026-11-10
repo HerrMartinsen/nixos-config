@@ -31,6 +31,7 @@ in
             "editor.defaultFormatter" = "ms-python.black-formatter";
           };
           "remote.SSH.localServerDownload" = "always";
+          "notebook.markup.fontSize" = 14;
         };
         extensions =
           (with pkgs.vscode-extensions; [
