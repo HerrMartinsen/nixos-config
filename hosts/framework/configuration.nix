@@ -12,7 +12,6 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
   };
 
   # networking.firewall.enable = false; for screen casting
@@ -141,6 +140,8 @@
   services = {
     avahi.enable = true;
     blueman.enable = true;
+    # framework-control.enable = true;
+    fprintd.enable = true;
     gnome.gnome-keyring.enable = true;
     locate.enable = true;
     pulseaudio.enable = false;
@@ -157,6 +158,16 @@
   security = {
     polkit.enable = true;
     rtkit.enable = true;
+    pam = {
+      enable = true;
+      services = {
+        greetd = {
+          fprintAuth = false;
+          enableGnomeKeyring = true;
+        };
+        login.fprintAuth = false;
+      };
+    };
   };
   programs = {
     atuin = {
@@ -174,6 +185,7 @@
       '';
     };
     firefox.enable = true;
+    # framework-settings.enable = true;
     thunderbird.enable = true;
     git.enable = true;
     steam.enable = true;

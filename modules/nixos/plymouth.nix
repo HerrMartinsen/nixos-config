@@ -2,8 +2,8 @@
 {
   boot = {
     initrd = {
-      systemd.enable = lib.mkDefault true;
-      kernelModules = [ "i915" ];
+      # systemd.enable = lib.mkDefault true;
+      kernelModules = [ "amdgpu" ];
     };
     plymouth = {
       enable = lib.mkDefault true;
