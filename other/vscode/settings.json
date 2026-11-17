@@ -1,0 +1,18 @@
+{
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "editor.formatOnSave": true,
+  "files.autoSave": "onFocusChange",
+  "github.copilot.nextEditSuggestions.eagerness": "low",
+  "github.copilot.nextEditSuggestions.enabled": false,
+  "notebook.markup.fontSize": 14,
+  "workbench.startupEditor": "none",
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "jupyter.askForKernelRestart": false
+}

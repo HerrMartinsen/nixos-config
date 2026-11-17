@@ -22,17 +22,6 @@ in
       enable = true;
       package = pkgs.vscode-fhs;
       profiles.default = {
-        userSettings = {
-          "files.autoSave" = "onFocusChange";
-          "github.copilot.nextEditSuggestions.eagerness" = "low";
-          "github.copilot.nextEditSuggestions.enabled" = false;
-          "editor.formatOnSave" = true;
-          "[python]" = {
-            "editor.defaultFormatter" = "ms-python.black-formatter";
-          };
-          "remote.SSH.localServerDownload" = "always";
-          "notebook.markup.fontSize" = 14;
-        };
         extensions =
           (with pkgs.vscode-extensions; [
             # Python
@@ -48,11 +37,6 @@ in
             ms-toolsai.vscode-jupyter-cell-tags
             ms-toolsai.vscode-jupyter-slideshow
 
-            # C / C++
-            ms-vscode.cpptools
-            ms-vscode.cmake-tools
-            ms-vscode.makefile-tools
-
             # CSV
             mechatroner.rainbow-csv
 
@@ -65,5 +49,7 @@ in
           ++ [ tensorboardExt ];
       };
     };
+    xdg.configFile."Code/User/settings.json".source =
+      config.lib.file.mkOutOfStoreSymlink "/home/martin/nixos-config/other/vscode/settings.json";
   };
 }
