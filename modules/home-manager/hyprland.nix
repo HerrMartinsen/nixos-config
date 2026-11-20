@@ -1,6 +1,17 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
+  # Cursor: hyprcursor theme for Hyprland/native Wayland apps,
+  # matching XCursor theme for GTK/Xwayland (sizes set in other/hyprland/env.lua)
+  home.packages = [ pkgs.rose-pine-hyprcursor ];
+  home.pointerCursor = {
+    enable = true;
+    package = pkgs.rose-pine-cursor;
+    name = "BreezeX-RosePine-Linux";
+    size = 32;
+    gtk.enable = true;
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     configType = "lua";
@@ -31,6 +42,11 @@
         },
         ecosystem = {
           no_update_news = true,
+        },
+        general = {
+          resize_on_border = true,
+          extend_border_grab_area = 20,
+          hover_icon_on_border = true,
         },
         gestures = {
           workspace_swipe_forever = true,
